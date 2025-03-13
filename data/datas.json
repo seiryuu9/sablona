@@ -1,0 +1,18 @@
+{
+  "text_banner": {
+      "banner1.jpg": "Prvy nadpis",
+      "banner2.jpg": "Druhy nadpis",
+      "banner3.jpg": "Treti nadpis"
+  },
+  "otazky": [
+  "prva otazka",
+  "druha otazka",
+  "tretia otazka"
+    ],
+
+  "odpovede": [
+  "prva odpoved",
+  "druha odpoved",
+  "tretia odpoved"
+  ]
+}
