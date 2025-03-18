@@ -104,19 +104,32 @@ function preparePortfolio(int $numberOfRows = 2, int $numberOfCols = 4): array{
     return $portfolio;
 }
 
-function finishPortfolio(){
-    $portfolio = preparePortfolio();
-    foreach ($portfolio as $row => $col) {
+function finishPortfolio() {
+    $portfolioData = preparePortfolio();
+    $data = json_decode(file_get_contents("data/datas.json"), true);
+    $portfolioTexts = $data["portfolio-text"];
+    foreach ($portfolioData as $row => $col) {
         echo '<div class="row">';
         foreach ($col as $index) {
+            $text = $portfolioTexts["portfolio{$index}.jpg"];
             echo '<div class="col-25 portfolio text-white text-center" id="portfolio-'.$index.'">
-                                        Web stránka '.$index.'
-                                     </div>';
+                            '.$text.'
+                         </div>';
         }
         echo '</div>';
     }
 }
 
+function getCSS(){
+    $jsonStr = file_get_contents("data/datas.json");
+    $data = json_decode($jsonStr, true);
+    $stranka = basename($_SERVER['REQUEST_URI']);
+    $stranka = explode(".", $stranka)[0];
+    $suboryCSS = $data['stranky'][$stranka];
+    foreach ($suboryCSS as $subor) {
+        echo "<link rel='stylesheet' href='$subor'>";
+    }
+}
 
 
 ?>

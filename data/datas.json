@@ -14,5 +14,23 @@
   "prva odpoved",
   "druha odpoved",
   "tretia odpoved"
-  ]
+  ],
+
+  "portfolio-text": {
+    "portfolio1.jpg":"Webstránka 1",
+    "portfolio2.jpg":"Webstránka 2",
+    "portfolio3.jpg":"Webstránka 3",
+    "portfolio4.jpg":"Webstránka 4",
+    "portfolio5.jpg":"Webstránka 5",
+    "portfolio6.jpg":"Webstránka 6",
+    "portfolio7.jpg":"Webstránka 7",
+    "portfolio8.jpg":"Webstránka 8"
+  },
+
+  "stranky": {
+    "index": ["css/style.css", "css/slider.css"],
+    "portfolio": ["css/style.css", "css/banner.css","css/portfolio.css"],
+    "qna": ["css/style.css", "css/banner.css","css/accordion.css"],
+    "kontakt": ["css/style.css", "css/banner.css","css/form.css"]
+  }
 }
