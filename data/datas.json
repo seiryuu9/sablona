@@ -32,5 +32,40 @@
     "portfolio": ["css/style.css", "css/banner.css","css/portfolio.css"],
     "qna": ["css/style.css", "css/banner.css","css/accordion.css"],
     "kontakt": ["css/style.css", "css/banner.css","css/form.css"]
+  },
+
+  "portfolio-text-url": {
+    "portfolio1.jpg": {
+      "text": "Webstránka 1",
+      "link": "https://www.google.com/"
+    },
+    "portfolio2.jpg": {
+      "text": "Webstránka 2",
+      "link": "https://www.google.com/"
+    },
+    "portfolio3.jpg": {
+      "text": "Webstránka 3",
+      "link": "https://www.google.com/"
+    },
+    "portfolio4.jpg": {
+      "text": "Webstránka 4",
+      "link": "https://www.google.com/"
+    },
+    "portfolio5.jpg": {
+      "text": "Webstránka 5",
+      "link": "https://www.google.com/"
+    },
+    "portfolio6.jpg": {
+      "text": "Webstránka 6",
+      "link": "https://www.google.com/"
+    },
+    "portfolio7.jpg": {
+      "text": "Webstránka 7",
+      "link": "https://www.google.com/"
+    },
+    "portfolio8.jpg": {
+      "text": "Webstránka 8",
+      "link": "https://www.google.com/"
+    }
   }
 }

@@ -104,21 +104,6 @@ function preparePortfolio(int $numberOfRows = 2, int $numberOfCols = 4): array{
     return $portfolio;
 }
 
-function finishPortfolio() {
-    $portfolioData = preparePortfolio();
-    $data = json_decode(file_get_contents("data/datas.json"), true);
-    $portfolioTexts = $data["portfolio-text"];
-    foreach ($portfolioData as $row => $col) {
-        echo '<div class="row">';
-        foreach ($col as $index) {
-            $text = $portfolioTexts["portfolio{$index}.jpg"];
-            echo '<div class="col-25 portfolio text-white text-center" id="portfolio-'.$index.'">
-                            '.$text.'
-                         </div>';
-        }
-        echo '</div>';
-    }
-}
 
 function getCSS(){
     $jsonStr = file_get_contents("data/datas.json");
@@ -131,6 +116,23 @@ function getCSS(){
     }
 }
 
+function finishPortfolio() {
+    $portfolioData = preparePortfolio();
+    $data = json_decode(file_get_contents("data/datas.json"), true);
+    foreach ($portfolioData as $row => $col) {
+        echo '<div class="row">';
+        foreach ($col as $index) {
+            $text = $data["portfolio-text-url"]["portfolio{$index}.jpg"]["text"];
+            $link = $data["portfolio-text-url"]["portfolio{$index}.jpg"]["link"];
+            echo '<a id="portfolio-' . $index . '" class="col-25 portfolio" href="' . $link . '">';
+            echo '    <div class="text-center">';
+            echo          $text;
+            echo '    </div>';
+            echo '</a>';
+        }
+        echo '</div>';
+    }
+}
 
 ?>
 
