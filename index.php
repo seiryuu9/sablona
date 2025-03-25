@@ -5,9 +5,9 @@ include_once "../sablona/parts/header.php";
 <?php
 include_once "../sablona/parts/nav.php";
 ?>
-    
+
     <main>
-      <section class="slides-container">
+      <section class="slides-container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
         <?php
         include_once "functions.php";
         generateSlides("../sablona/img/banners");
@@ -17,8 +17,8 @@ include_once "../sablona/parts/nav.php";
         <a id="next" class="next">❯</a>
         
       </section>
-      <section class="container">
-        <div class="row">
+      <section class="container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
+        <div class="row" >
           <div class="col-100 text-center">
             <?php
                 pozdrav();

@@ -12,7 +12,7 @@ include_once "../sablona/parts/nav.php";
                     <h1>Portfólio</h1>
                 </div>
             </section>
-              <section class="container">
+              <section class="container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
                   <?php
                   finishPortfolio();
                   ?>

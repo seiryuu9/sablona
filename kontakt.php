@@ -13,14 +13,14 @@ include_once "../sablona/parts/nav.php";
       </div>
     </section>
     <section>
-      <div class="container">
-        <div class="col-100 text-center">
+      <div class="container" style="background-color: <?php echo $theme === "dark" ? "darkgrey" :  "white"; ?>">
+        <div class="col-100 text-center" >
           <p><strong><em>Elit culpa id mollit irure sit. Ex ut et ea esse culpa officia ea incididunt elit velit veniam qui. Mollit deserunt culpa incididunt laborum commodo in culpa.</em
           ></strong></p>
         </div>
       </div>
     </section>
-    <section class="container">
+    <section class="container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
       <div class="row">
         <div class="col-50"> 
           <h3>Máte otázky?</h3>

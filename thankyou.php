@@ -11,7 +11,7 @@ include_once "../sablona/parts/nav.php";
           <h1>Ďakujeme</h1>
         </div>
       </section>
-      <section class="container">
+      <section class="container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
         <div class="row">
           <div class="col-100 text-center">
               <h2>Ďakujeme za vyplnenie formulára</h2>
