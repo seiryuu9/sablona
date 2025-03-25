@@ -4,8 +4,10 @@
 include_once "functions.php";
 
 $menu = getMenuData("header");
+$theme = $_GET['theme'];
+
 ?>
-<header class="container main-header">
+<header style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>" class="container main-header">
     <div class="logo-holder">
         <a href="<?php echo $menu['home']['path'] ?>">
             <img src="img/logo.png" height="40">
@@ -13,6 +15,7 @@ $menu = getMenuData("header");
     </div>
     <nav class="main-nav">
         <ul class="main-menu" id="main-menu">
+            <a href=<?php echo $theme === "dark" ? "?theme=light" : "?theme=dark"; ?> > zmena temy </a>
             <?php printMenu($menu); ?>
         </ul>
         <a class="hamburger" id="hamburger">
