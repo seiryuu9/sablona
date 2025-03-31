@@ -19,8 +19,15 @@ include_once "../sablona/parts/nav.php";
       </div>
     </section>
     <section class="container" style="background-color: <?php echo $theme === "dark" ? "grey" :  "white"; ?>">
-    <?php
-    otazkyyy() ?>
+
+        <?php
+        include_once "classes/qna.php";
+        use otazkyodpovede\QnA;
+
+        $qna = new QnA(); //nova instancia triedy QnA do premennej
+        $qna->insertQnA(); //zavola metodu na objekt qna
+        $qna->getQnA();
+        ?>
 
     </section>
 
