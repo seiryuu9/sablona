@@ -30,6 +30,7 @@ class QnA{
     }
     public function insertQnA(){ //dava qna z json do tabulky v databaze
         try {
+            $this->conn->exec("ALTER TABLE qna ADD UNIQUE (otazka)"); // prida unique constraint(otazka musi bit unikatna), inak insert ignore nefunguje
             // Načítanie JSON súboru
             $data = json_decode(file_get_contents
             (__ROOT__.'/data/datas.json'), true); //zoznam
@@ -38,31 +39,22 @@ class QnA{
             // Vloženie otázok a odpovedí v rámci transakcie
             $this->conn->beginTransaction(); //metoda z pdo
 
-            $sqlInsert = "INSERT INTO qna (otazka, odpoved) VALUES (:otazka, :odpoved)"; //placeholders
-            $sqlCheck = "SELECT COUNT(*) FROM qna WHERE otazka = :otazka";
+            $sql = "INSERT IGNORE INTO qna (otazka, odpoved) VALUES (:otazka, :odpoved)"; //placeholders :
 
-            $statementInsert = $this->conn->prepare($sqlInsert);
-            $statementCheck = $this->conn->prepare($sqlCheck);
+            $statement = $this->conn->prepare($sql);
 
             for ($i = 0; $i < count($otazky); $i++) {
-                // zisti, ci otazka uz existuje
-                $statementCheck->bindParam(':otazka', $otazky[$i]); //priradi otazku k placeholderu
-                $statementCheck->execute();
-                $exists = $statementCheck->fetchColumn();
-
-                if ($exists == 0) { // priradi ak este neexistuje
-                    $statementInsert->bindParam(':otazka', $otazky[$i]);
-                    $statementInsert->bindParam(':odpoved', $odpovede[$i]);
-                    $statementInsert->execute();
-                }
+                $statement->bindParam(':otazka', $otazky[$i]);
+                $statement->bindParam(':odpoved', $odpovede[$i]);
+                $statement->execute();
             }
             $this->conn->commit();
         }
-     catch (Exception $e) {
-         echo "Chyba pri vkladaní dát do databázy: " . $e->getMessage();
-         $this->conn->rollback(); // Vrátenie späť zmien v prípade chyby
+         catch (Exception $e) {
+             echo "Chyba pri vkladaní dát do databázy: " . $e->getMessage();
+             $this->conn->rollback(); // Vrátenie späť zmien v prípade chyby
+            }
         }
-    }
         public function getQnA() { //vypise otazky a odpovede
             try {
                 $sql = "SELECT otazka, odpoved FROM qna";
