@@ -1,32 +1,24 @@
 <?php
 
 namespace otazkyodpovede;
-define('__ROOT__', dirname(dirname(__FILE__))); //root je cesta ku korenovemu adresaru projektu
-require_once(__ROOT__.'/db/config.php'); //sablona/
-use PDO; //php data object - pripojenie k databaze (akejkolvek)
-class QnA{
-    private $conn;
+//error_reporting(E_ALL);
+//ini_set('display_errors', "On");
+if (!defined('__ROOT__')) {
+    define('__ROOT__', dirname(dirname(__FILE__)));
+} //root je cesta ku korenovemu adresaru projektu
+require_once(__ROOT__.'/classes/Database.php'); //sablona/
 
-    public function __construct() {
-        $this->connect();
-    }
-    private function connect()
-    {
-        $config = DATABASE; //zoznam v config.php
+use Database;
+use Exception;
+use PDOException;
 
-        $options = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ];
+class QnA extends Database{
+    protected $conn;
 
-        try {
-            $this->conn = new PDO(
-                'mysql:host=' . $config['HOST'] . ';dbname=' . $config['DBNAME'] . ';port=' . $config['PORT'],
-                $config['USER_NAME'], $config['PASSWORD'], $options
-            );
-        }catch (PDOException $e) {
-            die("Chyba pripojenia: " . $e->getMessage());
-        }
+    public function __construct(){
+
+        parent::__construct();
+        $this->conn = $this->getConnection();
     }
     public function insertQnA(){ //dava qna z json do tabulky v databaze
         try {

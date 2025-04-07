@@ -1,10 +1,9 @@
 <?php
-// PDO databázové pripojenie
+//konštanta DATABASE obsahujúca asociatívne pole
 define('DATABASE', [
-    'HOST' => "localhost",
-    'DBNAME' => "formular",
+    'HOST' => 'localhost',
+    'DBNAME' => 'formular',
     'PORT' => 3306,
-    'USER_NAME' => "root",
-    'PASSWORD' => "",
+    'USER_NAME' => 'root',
+    'PASSWORD' => ''
 ]);
-?>

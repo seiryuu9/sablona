@@ -1,31 +1,29 @@
 <?php
 
 namespace formular;
-require_once('../db/config.php');
-use PDO;
+error_reporting(E_ALL);
+ini_set('display_errors', "On");
+if (!defined('__ROOT__')) {
+    define('__ROOT__', dirname(dirname(__FILE__)));
+} //root je cesta ku korenovemu adresaru projektu
+require_once(__ROOT__.'/classes/Database.php');
 
-class Kontakt{
+use Database;
+use Exception;
 
-  private $conn;
-  public function __construct() {
-      $this->connect();
-  }
-private function connect() {
-    $config = DATABASE;
-    $options = array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        );
+class Kontakt extends Database{
 
-    try {
-        $this->conn = new PDO('mysql:host=' . $config['HOST'] . ';dbname=' . $config['DBNAME'] . ';port=' . $config['PORT'], $config['USER_NAME'], $config['PASSWORD'], $options);
-    } catch (PDOException $e) {
-        die("Chyba pripojenia: " . $e->getMessage());
+    protected $conn;
+
+    public function __construct(){
+
+        parent::__construct();
+        $this->conn = $this->getConnection();
     }
-}
+
 
 public function ulozitSpravu($meno, $email, $sprava) {
-    $sql = "INSERT INTO kontakt_formular (meno, email, sprava) 
+    $sql = "INSERT INTO  udaje(meno, email, sprava) 
     VALUE ('" . $meno . "', '" . $email . "', '" . $sprava . "')";
     $statement = $this->conn->prepare($sql);
 
@@ -34,7 +32,7 @@ public function ulozitSpravu($meno, $email, $sprava) {
         header("Location: http://localhost/cvicnasablona/thankyou.php");
         http_response_code(200);
         return $insert;
-    } catch (\Exception $exception) {
+    } catch (Exception $exception) {
         return http_response_code(404);
     }
 }

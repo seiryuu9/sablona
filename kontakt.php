@@ -30,7 +30,7 @@ include_once "../sablona/parts/nav.php";
         </div>
         <div class="col-50 text-right">
           <h3>Napíšte nám</h3>
-          <form id="contact" method="get" action="db/spracovanieFormulara.php">
+          <form id="contact" method="post" action="db/spracovanieFormulara.php">
             <input type="text" placeholder="Vaše meno" id ="meno" name="meno" required><br>
             <input type="email" placeholder="Váš email" id="email" name="email" required><br>
             <textarea name="sprava" placeholder="Vaša správa" id="sprava"></textarea><br>
